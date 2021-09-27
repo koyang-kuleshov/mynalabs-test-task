@@ -1,1 +1,1 @@
-FIX: Neet to skip exception "DNSLookup".
+FIX: Need to skip exception "DNSLookup".
