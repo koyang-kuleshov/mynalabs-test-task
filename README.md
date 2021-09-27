@@ -1,1 +1,1 @@
-First version process [Flickr-Faces-HQ Dataset](https://github.com/NVlabs/ffhq-dataset)
+Added collecting images with Selenium webdriver from yandex.ru/images
