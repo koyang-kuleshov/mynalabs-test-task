@@ -1,3 +1,4 @@
+'''Collect data about images.'''
 import json
 from urllib.parse import urlencode
 
@@ -7,14 +8,20 @@ from scrapy.loader import ItemLoader
 from collect_images_from_bing.items import CollectImagesFromBingItem
 
 class CollectImagesSpider(scrapy.Spider):
+    '''CollectImagesSpider main class for collecting image's urls.'''
     name = 'collect-images'
     allowed_domains = ['microsoft.com']
     start_urls = ['https://api.bing.microsoft.com/v7.0/search']
 
 
     def parse(self, response):
-        key_pharases = ['"men face +with glasses"',
-                        '"women face +with glasses"']
+        '''Summary of parse.
+
+        Args:
+            response: default response.
+        '''
+        key_pharases = ['"men face glasses"',
+                        '"women face glasses"']
         for k_phrase in key_pharases:
             params  = urlencode({
                 'q': k_phrase,
@@ -29,13 +36,14 @@ class CollectImagesSpider(scrapy.Spider):
                                   callback=self.process_json)
 
     def process_json(self, response):
+        '''Summary of process_json.
+
+        Args:
+            response |json| response with data.
+        '''
         item = ItemLoader(CollectImagesFromBingItem(), response)
         data = json.loads(response.body)
         imgs = data['images']['value']
         for img in imgs:
-            item.add_value('img_url', img['thumbnailUrl'])
-            item.add_value('img_width', img['thumbnail']['width'])
-            item.add_value('img_height', img['thumbnail']['height'])
-            item.add_value('img_format', img['encodingFormat'])
+            item.add_value('image_urls', img['thumbnailUrl'])
             yield item.load_item()
-

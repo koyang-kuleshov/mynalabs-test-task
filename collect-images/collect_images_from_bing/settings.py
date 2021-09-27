@@ -1,4 +1,6 @@
+'''Settings for parser.'''
 import os
+from os.path import abspath, dirname, join
 
 BOT_NAME = 'collect_images_from_bing'
 
@@ -8,7 +10,7 @@ NEWSPIDER_MODULE = 'collect_images_from_bing.spiders'
 LOG_ENABLED = True
 LOG_LEVEL = 'DEBUG'
 
-CLOSESPIDER_ITEMCOUNT = 10
+CLOSESPIDER_ITEMCOUNT = 3000
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 USER_AGENT = 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:81.0) Gecko/20100101 Firefox/81.0'
@@ -38,6 +40,11 @@ DEFAULT_REQUEST_HEADERS = {
   'Ocp-Apim-Subscription-Key' : os.environ['BING_API']
 }
 
+IMAGES_STORE = join(dirname(dirname(abspath(__file__))), 'img')
+
+IMAGES_MIN_HEIGHT = 256
+IMAGES_MIN_WIDTH = 256
+
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
@@ -58,9 +65,10 @@ DEFAULT_REQUEST_HEADERS = {
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-# ITEM_PIPELINES = {
-#     'collect_images_from_bing.pipelines.CollectImagesFromBingPipeline': 300,
-# }
+ITEM_PIPELINES = {
+    'collect_images_from_bing.pipelines.ImagesPipeline': 100,
+    'collect_images_from_bing.pipelines.CollectImagesFromBingPipeline': 200
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
