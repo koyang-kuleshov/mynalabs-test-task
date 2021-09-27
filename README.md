@@ -1,2 +1,1 @@
-[ ] FIX: Need to skip exception "DNSLookup";\
-[ ] Setup face croping via pytorch.
+Added collecting images with Selenium webdriver from yandex.ru/images
