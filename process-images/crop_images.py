@@ -1,3 +1,4 @@
+'''Process images with MTCNN.'''
 from multiprocessing import Pool
 import os
 from random import randint
@@ -9,12 +10,17 @@ from facenet_pytorch import MTCNN
 
 IMGS = [os.path.join(
         os.path.dirname(__file__),
-        'img', f) for f in os.listdir('img')[:50]]
+        'img', f) for f in os.listdir('img')[:1000]]
 
 
 MAX_CHUNK = 10
 
 def process_files(filenames):
+    '''Summary of process_files.
+
+    Args:
+        filenames |list| list of images for processing.
+    '''
     mtcnn = MTCNN(
         select_largest=False,
         margin=40,

@@ -10,7 +10,7 @@ NEWSPIDER_MODULE = 'collect_images_from_bing.spiders'
 LOG_ENABLED = True
 LOG_LEVEL = 'INFO'
 
-CLOSESPIDER_ITEMCOUNT = 1500
+CLOSESPIDER_ITEMCOUNT = 5000
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 USER_AGENT = 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:81.0) Gecko/20100101 Firefox/81.0'
@@ -43,7 +43,7 @@ DEFAULT_REQUEST_HEADERS = {
 
 # Image settings
 IMAGES_STORE = join(dirname(dirname(dirname(abspath(__file__)))),
-                    'crop-images',
+                    'process-images',
                     'img')
 IMAGES_MIN_HEIGHT = 256
 IMAGES_MIN_WIDTH = 256
