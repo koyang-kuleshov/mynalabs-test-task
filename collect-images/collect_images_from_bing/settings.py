@@ -42,7 +42,9 @@ DEFAULT_REQUEST_HEADERS = {
 }
 
 # Image settings
-IMAGES_STORE = join(dirname(dirname(abspath(__file__))), 'img')
+IMAGES_STORE = join(dirname(dirname(dirname(abspath(__file__)))),
+                    'crop-images',
+                    'img')
 IMAGES_MIN_HEIGHT = 256
 IMAGES_MIN_WIDTH = 256
 MEDIA_ALLOW_REDIRECTS = True

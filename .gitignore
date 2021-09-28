@@ -133,3 +133,5 @@ activate
 env.sh
 *img/
 __init__.py
+*.png
+*.jpg
